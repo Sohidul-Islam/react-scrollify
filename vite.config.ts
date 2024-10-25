@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       //Defines the entry point for the library build. It resolves
       //to src/index.ts,indicating that the library starts from this file.
-      entry: path.resolve(__dirname, "src/index.tsx"),
+      entry: path.resolve(__dirname, "src/index.ts"),
       name: "react-jp-ui",
       //A function that generates the output file
       //name for different formats during the build
