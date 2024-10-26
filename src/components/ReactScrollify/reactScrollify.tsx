@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from "react";
 import { useIntersectionObserver } from "usehooks-ts";
 
@@ -16,6 +17,7 @@ type ScrollifyProps<T> = {
   };
   isLoading?: boolean;
   loadingOverlay?: React.ReactNode;
+  loadMoreButton?: React.ReactNode;
   styleRootElement?: Record<string, string | number | undefined>;
   rootClassName?: string;
   rootElementId?: string;
@@ -25,6 +27,7 @@ type ScrollifyProps<T> = {
     position: number | string | undefined;
   };
   onRefresh?: () => void;
+  onLoadMore?: (page: number) => void;
 };
 
 const Scrollify = <T,>({
@@ -38,10 +41,12 @@ const Scrollify = <T,>({
   rootClassName,
   rootElementId,
   enableLoadMoreButton = false,
+  loadMoreButton,
   enablePulling,
   pulingOptions,
   onRefresh,
   loadingOverlay,
+  onLoadMore,
 }: ScrollifyProps<T>) => {
   const rootElement = useRef<HTMLDivElement | null>(null);
 
@@ -240,6 +245,10 @@ const Scrollify = <T,>({
               pagination.totalPage
             );
             currentPage = Math.max(1, currentPage);
+            if (onLoadMore) {
+              onLoadMore(currentPage);
+              return;
+            }
             if (onChangePage) onChangePage(currentPage);
           }}
           style={{
@@ -250,24 +259,28 @@ const Scrollify = <T,>({
             transition: "all 0.3s linear",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
+          {!loadMoreButton && (
             <div
               style={{
-                textAlign: "center",
-                padding: "4px 10px",
-                background: "black",
-                color: "white",
-                borderRadius: "12px",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
-              Load more
+              <div
+                style={{
+                  textAlign: "center",
+                  padding: "4px 10px",
+                  background: "black",
+                  color: "white",
+                  borderRadius: "12px",
+                }}
+              >
+                Load more
+              </div>
             </div>
-          </div>
+          )}
+
+          {loadMoreButton}
         </div>
       )}
     </div>

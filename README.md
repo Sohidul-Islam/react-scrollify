@@ -37,7 +37,7 @@ import { ReactScrollify } from "react-scrollify-paginate-y";
 
 const YourComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 20;
+  const [data, setData] = useState([]);
   const totalPages = 50; // Calculate based on your total data
 
   const handlePageChange = (page) => {
@@ -45,16 +45,24 @@ const YourComponent = () => {
     // Fetch or update your data here
   };
 
+  const handleRefresh = () => {
+    // Implement refresh logic here
+  };
+
   return (
     <ReactScrollify
-      data={yourDataArray}
+      data={data}
       onChangePage={handlePageChange}
       pagination={{
         page: currentPage,
         totalPage: totalPages,
       }}
+      onRefresh={handleRefresh}
+      enablePulling={true}
     >
-      {/* Your list component here */}
+      {data.map((item, index) => (
+        <div key={index}>{/* Render your item */}</div>
+      ))}
     </ReactScrollify>
   );
 };
@@ -62,11 +70,24 @@ const YourComponent = () => {
 
 ## Props
 
-| Prop         | Type     | Description                                                         |
-| ------------ | -------- | ------------------------------------------------------------------- |
-| data         | Array    | The array of data to be paginated and displayed.                    |
-| onChangePage | Function | Callback triggered when the page changes. Receives new page number. |
-| pagination   | Object   | Object with `page` (current page) and `totalPage` properties.       |
+| Prop                 | Type                                          | Default | Description                                                                                                                                                                                              |
+| -------------------- | --------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children             | React.ReactNode                               | -       | The content to be rendered within the scrollable sections                                                                                                                                                |
+| threshold            | number                                        | -       | The scroll threshold to trigger page changes                                                                                                                                                             |
+| data                 | T[]                                           | -       | The array of data to be paginated and displayed                                                                                                                                                          |
+| onChangePage         | (page: number) => void                        | -       | Callback triggered when the page changes                                                                                                                                                                 |
+| onLoadMore           | (page: number) => void                        | -       | Callback triggered when the click on load more button                                                                                                                                                    |
+| pagination           | { page: number; totalPage: number }           | -       | Object with current page and total pages information                                                                                                                                                     |
+| isLoading            | boolean                                       | false   | Indicates if data is currently loading                                                                                                                                                                   |
+| loadingOverlay       | React.ReactNode                               | -       | Custom loading overlay component                                                                                                                                                                         |
+| loadMoreButton       | React.ReactNode                               | -       | Custom Load more button component                                                                                                                                                                        |
+| styleRootElement     | Record<string, string \| number \| undefined> | -       | Custom styles for the root element                                                                                                                                                                       |
+| rootClassName        | string                                        | -       | Custom class name for the root element                                                                                                                                                                   |
+| rootElementId        | string                                        | -       | Custom ID for the root element                                                                                                                                                                           |
+| enableLoadMoreButton | boolean                                       | false   | Enable or disable the load more button                                                                                                                                                                   |
+| enablePulling        | boolean                                       | false   | Enable or disable pull-to-refresh functionality                                                                                                                                                          |
+| pulingOptions        | { position: number \| string \| undefined }   | -       | Options for pull-to-refresh behavior. note: by default it will work when the root element in scrolling possition in top. you can pass any position number or "any" - it will work every places you want. |
+| onRefresh            | () => void                                    | -       | Callback function for refresh action                                                                                                                                                                     |
 
 ## Pagination
 
@@ -103,20 +124,77 @@ const handlePageChange = async (page) => {
 Customize the scroll container:
 
 ```jsx
-<div style={{ height: "400px", overflowY: "auto" }}>
-  <ReactScrollify
-  // ...props
-  >
-    {/* Your content */}
-  </ReactScrollify>
-</div>
+<ReactScrollify
+  styleRootElement={{ height: "400px", overflowY: "auto" }}
+  rootClassName="custom-scrollify-container"
+  rootElementId="my-scrollify-container"
+>
+  {/* Your content */}
+</ReactScrollify>
+```
+
+### Pull-to-Refresh
+
+Enable pull-to-refresh functionality:
+
+```jsx
+<ReactScrollify
+  enablePulling={true}
+  pulingOptions={{ position: 60 }}
+  onRefresh={handleRefresh}
+>
+  {/* Your content */}
+</ReactScrollify>
 ```
 
 ## Examples
 
-- Paginating API Data
-- Displaying Large Lists
-- Custom Scrolling Behavior
+### Paginating API Data
+
+```jsx
+const [data, setData] = useState([]);
+const [page, setPage] = useState(1);
+const [totalPages, setTotalPages] = useState(1);
+
+const fetchData = async (page) => {
+  const response = await fetch(`https://api.example.com/data?page=${page}`);
+  const { results, total_pages } = await response.json();
+  setData((prevData) => [...prevData, ...results]);
+  setTotalPages(total_pages);
+};
+
+const handlePageChange = (newPage) => {
+  setPage(newPage);
+  fetchData(newPage);
+};
+
+return (
+  <ReactScrollify
+    data={data}
+    onChangePage={handlePageChange}
+    pagination={{ page, totalPage: totalPages }}
+    isLoading={isLoading}
+    loadingOverlay={<div>Loading...</div>}
+  >
+    {/* You have to make component with data props. without data props it will not work */}
+    <YourListComponent data={[]} />
+  </ReactScrollify>
+);
+```
+
+### Custom Scrolling Behavior
+
+```jsx
+<ReactScrollify
+  threshold={100}
+  enableLoadMoreButton={true}
+  onChangePage={handlePageChange}
+  // ...other props
+>
+  {/* Your content */}
+  {isLastPage && <div>No more data to load</div>}
+</ReactScrollify>
+```
 
 ## Contributing
 
