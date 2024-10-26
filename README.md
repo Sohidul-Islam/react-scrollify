@@ -1,4 +1,14 @@
-# react-scrollify-paginate-y
+
+<h1 align="center">React Scrollify</h1>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-scrollify-paginate-y"><img src="https://img.shields.io/npm/v/react-scrollify-paginate-y.svg" alt="npm version"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+  <a href="https://www.npmjs.com/package/react-scrollify-paginate-y"><img src="https://img.shields.io/npm/dt/react-scrollify-paginate-y.svg" alt="npm downloads"></a>
+  <a href="https://github.com/Sohidul-Islam/react-scrollify/stargazers"><img src="https://img.shields.io/github/stars/Sohidul-Islam/react-scrollify.svg" alt="GitHub stars"></a>
+  <a href="https://github.com/Sohidul-Islam/react-scrollify/issues"><img src="https://img.shields.io/github/issues/Sohidul-Islam/react-scrollify.svg" alt="GitHub issues"></a>
+  <a href="https://github.com/Sohidul-Islam/react-scrollify/commits/main"><img src="https://img.shields.io/github/last-commit/Sohidul-Islam/react-scrollify.svg" alt="GitHub last commit"></a>
+</p>
 
 A lightweight React component that provides infinite scroll and pagination functionality for data-driven applications. It simplifies the process of paginating large datasets by dynamically loading and rendering new data as the user scrolls.
 
