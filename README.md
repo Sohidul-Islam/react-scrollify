@@ -60,9 +60,8 @@ const YourComponent = () => {
       onRefresh={handleRefresh}
       enablePulling={true}
     >
-      {data.map((item, index) => (
-        <div key={index}>{/* Render your item */}</div>
-      ))}
+      {/* You have to make component with data props. without data props it will not work */}
+      <YourListComponent data={[]} />
     </ReactScrollify>
   );
 };
