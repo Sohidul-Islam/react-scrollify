@@ -11,6 +11,7 @@ type ScrollifyProps<T> = {
   threshold?: number;
   data: T[];
   onChangePage: (page: number) => void;
+  enableDataMemorization?: boolean;
   pagination: {
     page: number;
     totalPage: number;
@@ -47,6 +48,7 @@ const Scrollify = <T,>({
   onRefresh,
   loadingOverlay,
   onLoadMore,
+  enableDataMemorization = true,
 }: ScrollifyProps<T>) => {
   const rootElement = useRef<HTMLDivElement | null>(null);
 
@@ -160,7 +162,9 @@ const Scrollify = <T,>({
           if (pagination.page === 1) {
             return data;
           }
-          return [...prev, ...data];
+
+          if (enableDataMemorization) return [...prev, ...data];
+          return data;
         });
       }
     }
