@@ -60,7 +60,6 @@ const Scrollify = <T,>({
   const { isIntersecting = false, ref } = useIntersectionObserver({
     threshold: threshold,
     onChange(isIntersecting) {
-      console.log({ isIntersecting });
       if (isIntersecting && onChangePage && !enableLoadMoreButton) {
         let currentPage = Math.min(pagination.page + 1, pagination.totalPage);
         currentPage = Math.max(1, currentPage);
@@ -89,7 +88,6 @@ const Scrollify = <T,>({
 
   // Handle touch move (calculate pull distance)
   const handleTouchMove = (e: TouchEvent) => {
-    console.log("touch start");
     if (startYRef.current !== null) {
       const currentY = e.touches[0].clientY;
       const distance = currentY - startYRef.current;
