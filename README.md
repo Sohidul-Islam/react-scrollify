@@ -108,18 +108,6 @@ Control page management using the `pagination` prop:
 
 ## Customization
 
-### Dynamic Data Loading
-
-Fetch new data as the user scrolls:
-
-```jsx
-const handlePageChange = async (page) => {
-  const newData = await fetchDataFromAPI(page);
-  setData((prevData) => [...prevData, ...newData]);
-  setCurrentPage(page);
-};
-```
-
 ### Styling
 
 Customize the scroll container:
