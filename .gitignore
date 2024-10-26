@@ -1,2 +1,8 @@
 node_modules
 dist
+src/components/demo
+src/components/demo/*
+src/index.css
+src/App.tsx
+src/main.tsx
+src/utils
