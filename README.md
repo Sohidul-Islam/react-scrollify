@@ -4,9 +4,9 @@
 <!-- <h1 align="center">react-scroll-pagify</h1> -->
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/react-scrollify-paginate-y"><img src="https://img.shields.io/npm/v/react-scrollify-paginate-y.svg" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/react-scroll-pagify"><img src="https://img.shields.io/npm/v/react-scroll-pagify.svg" alt="npm version"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
-  <a href="https://www.npmjs.com/package/react-scrollify-paginate-y"><img src="https://img.shields.io/npm/dt/react-scrollify-paginate-y.svg" alt="npm downloads"></a>
+  <a href="https://www.npmjs.com/package/react-scroll-pagify"><img src="https://img.shields.io/npm/dt/react-scroll-pagify.svg" alt="npm downloads"></a>
   <a href="https://github.com/Sohidul-Islam/react-scrollify/stargazers"><img src="https://img.shields.io/github/stars/Sohidul-Islam/react-scrollify.svg" alt="GitHub stars"></a>
   <a href="https://github.com/Sohidul-Islam/react-scrollify/issues"><img src="https://img.shields.io/github/issues/Sohidul-Islam/react-scrollify.svg" alt="GitHub issues"></a>
   <a href="https://github.com/Sohidul-Islam/react-scrollify/commits/main"><img src="https://img.shields.io/github/last-commit/Sohidul-Islam/react-scrollify.svg" alt="GitHub last commit"></a>
@@ -30,22 +30,22 @@ A lightweight React component that provides infinite scroll and pagination funct
 Install the package using npm or yarn:
 
 ```bash
-npm install react-scrollify-paginate-y
+npm i react-scroll-pagify
 ```
 
 or
 
 ```bash
-yarn add react-scrollify-paginate-y
+yarn add react-scroll-pagify
 ```
 
 ## Basic Usage
 
-Here's a basic example of how to use the `ReactScrollify` component:
+Here's a basic example of how to use the `ReactScrollPagify` component:
 
 ```jsx
 import React, { useState } from "react";
-import { ReactScrollify } from "react-scrollify-paginate-y";
+import { ReactScrollPagify } from "react-scroll-pagify";
 
 const YourComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -62,7 +62,7 @@ const YourComponent = () => {
   };
 
   return (
-    <ReactScrollify
+    <ReactScrollPagify
       data={data}
       onChangePage={handlePageChange}
       pagination={{
@@ -74,7 +74,7 @@ const YourComponent = () => {
     >
       {/* You have to make component with data props. without data props it will not work */}
       <YourListComponent data={[]} />
-    </ReactScrollify>
+    </ReactScrollPagify>
   );
 };
 ```
@@ -107,7 +107,7 @@ const YourComponent = () => {
 Control page management using the `pagination` prop:
 
 ```jsx
-<ReactScrollify
+<ReactScrollPagify
   // ...other props
   pagination={{
     page: currentPage,
@@ -115,7 +115,7 @@ Control page management using the `pagination` prop:
   }}
 >
   {/* Your content */}
-</ReactScrollify>
+</ReactScrollPagify>
 ```
 
 ## Customization
@@ -125,13 +125,13 @@ Control page management using the `pagination` prop:
 Customize the scroll container:
 
 ```jsx
-<ReactScrollify
+<ReactScrollPagify
   styleRootElement={{ height: "400px", overflowY: "auto" }}
   rootClassName="custom-scrollify-container"
   rootElementId="my-scrollify-container"
 >
   {/* Your content */}
-</ReactScrollify>
+</ReactScrollPagify>
 ```
 
 ### Pull-to-Refresh
@@ -139,13 +139,13 @@ Customize the scroll container:
 Enable pull-to-refresh functionality:
 
 ```jsx
-<ReactScrollify
+<ReactScrollPagify
   enablePulling={true}
   pulingOptions={{ position: 60 }}
   onRefresh={handleRefresh}
 >
   {/* Your content */}
-</ReactScrollify>
+</ReactScrollPagify>
 ```
 
 ## Examples
@@ -170,7 +170,7 @@ const handlePageChange = (newPage) => {
 };
 
 return (
-  <ReactScrollify
+  <ReactScrollPagify
     data={data}
     onChangePage={handlePageChange}
     pagination={{ page, totalPage: totalPages }}
@@ -179,14 +179,14 @@ return (
   >
     {/* You have to make component with data props. without data props it will not work */}
     <YourListComponent data={[]} />
-  </ReactScrollify>
+  </ReactScrollPagify>
 );
 ```
 
 ### Custom Scrolling Behavior
 
 ```jsx
-<ReactScrollify
+<ReactScrollPagify
   threshold={100}
   enableLoadMoreButton={true}
   onChangePage={handlePageChange}
@@ -194,7 +194,7 @@ return (
 >
   {/* Your content */}
   {isLastPage && <div>No more data to load</div>}
-</ReactScrollify>
+</ReactScrollPagify>
 ```
 
 ## Contributing

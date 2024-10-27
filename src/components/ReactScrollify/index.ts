@@ -1,1 +1,1 @@
-export { default as ReactScrollify } from "./reactScrollify";
+export { default as ReactScrollPagify } from "./reactScrollify";
