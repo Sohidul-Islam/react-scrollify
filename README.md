@@ -1,5 +1,4 @@
-
-<h1 align="center">React Scrollify</h1>
+<h1 align="center">react-scroll-pagify</h1>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/react-scrollify-paginate-y"><img src="https://img.shields.io/npm/v/react-scrollify-paginate-y.svg" alt="npm version"></a>
@@ -85,6 +84,7 @@ const YourComponent = () => {
 | threshold              | number                                        | -       | The scroll threshold to trigger page changes                                                                                                                                                             |
 | data                   | T[]                                           | -       | The array of data to be paginated and displayed                                                                                                                                                          |
 | onChangePage           | (page: number) => void                        | -       | Callback triggered when the page changes                                                                                                                                                                 |
+| onDataChange           | (data:T[]) => void                            | -       | Callback triggered when the data changes and you can customize your data on that                                                                                                                         |
 | onLoadMore             | (page: number) => void                        | -       | Callback triggered when the click on load more button                                                                                                                                                    |
 | pagination             | { page: number; totalPage: number }           | -       | Object with current page and total pages information                                                                                                                                                     |
 | isLoading              | boolean                                       | false   | Indicates if data is currently loading                                                                                                                                                                   |

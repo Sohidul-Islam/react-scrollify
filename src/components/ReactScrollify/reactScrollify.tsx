@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from "react";
 import { useIntersectionObserver } from "usehooks-ts";
@@ -27,6 +28,7 @@ type ScrollifyProps<T> = {
   pulingOptions?: {
     position: number | string | undefined;
   };
+  onDataChange?: (data: T[]) => void;
   onRefresh?: () => void;
   onLoadMore?: (page: number) => void;
 };
@@ -47,6 +49,7 @@ const Scrollify = <T,>({
   pulingOptions,
   onRefresh,
   loadingOverlay,
+  onDataChange,
   onLoadMore,
   enableDataMemorization = true,
 }: ScrollifyProps<T>) => {
@@ -158,10 +161,15 @@ const Scrollify = <T,>({
       if (!isLoading) {
         setMemorizedData((prev: T[]) => {
           if (pagination.page === 1) {
+            onDataChange && onDataChange(data);
             return data;
           }
 
-          if (enableDataMemorization) return [...prev, ...data];
+          if (enableDataMemorization) {
+            onDataChange && onDataChange(data);
+            return [...prev, ...data];
+          }
+          onDataChange && onDataChange(data);
           return data;
         });
       }

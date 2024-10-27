@@ -20,8 +20,9 @@ type ScrollifyProps<T> = {
     pulingOptions?: {
         position: number | string | undefined;
     };
+    onDataChange?: (data: T[]) => void;
     onRefresh?: () => void;
     onLoadMore?: (page: number) => void;
 };
-declare const Scrollify: <T>({ children, threshold, onChangePage, data, pagination, isLoading, styleRootElement, rootClassName, rootElementId, enableLoadMoreButton, loadMoreButton, enablePulling, pulingOptions, onRefresh, loadingOverlay, onLoadMore, enableDataMemorization, }: ScrollifyProps<T>) => import("react/jsx-runtime").JSX.Element;
+declare const Scrollify: <T>({ children, threshold, onChangePage, data, pagination, isLoading, styleRootElement, rootClassName, rootElementId, enableLoadMoreButton, loadMoreButton, enablePulling, pulingOptions, onRefresh, loadingOverlay, onDataChange, onLoadMore, enableDataMemorization, }: ScrollifyProps<T>) => import("react/jsx-runtime").JSX.Element;
 export default Scrollify;
