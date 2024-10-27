@@ -1,4 +1,7 @@
-<h1 align="center">react-scroll-pagify</h1>
+<div align="center">
+  <img width="200" src="https://github.com/Sohidul-Islam/react-scrollify/blob/main/src/asset/react-scroll-pagify-logo.png">
+</div>
+<!-- <h1 align="center">react-scroll-pagify</h1> -->
 
 <p align="center">
   <a href="https://www.npmjs.com/package/react-scrollify-paginate-y"><img src="https://img.shields.io/npm/v/react-scrollify-paginate-y.svg" alt="npm version"></a>
