@@ -823,6 +823,6 @@ const _r = ({
   );
 };
 export {
-  _r as ReactScrollify
+  _r as ReactScrollPagify
 };
 //# sourceMappingURL=index.es.js.map
